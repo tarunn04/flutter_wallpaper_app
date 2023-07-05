@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Category extends StatelessWidget {
@@ -23,7 +24,7 @@ class Category extends StatelessWidget {
                 ),
             Expanded(
               child: GridView.builder(
-                padding: EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 itemCount: 20,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -32,12 +33,17 @@ class Category extends StatelessWidget {
                   childAspectRatio: 0.7
                   ), 
                 itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.all(Radius.circular(10))
+                  return InkWell(
+                    onTap: () {
+                      Get.toNamed("/wallpaperPage");
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.all(Radius.circular(10))
+                      ),
+                      
                     ),
-                    
                   );
                 },),
   
