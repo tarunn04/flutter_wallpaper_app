@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wallpaper_app/services/api_controller.dart';
 
-class WallpaperPage extends StatelessWidget {
+class WallpaperPage extends StatefulWidget {
   const WallpaperPage({super.key});
 
+  @override
+  State<WallpaperPage> createState() => _WallpaperPageState();
+}
+
+class _WallpaperPageState extends State<WallpaperPage> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
