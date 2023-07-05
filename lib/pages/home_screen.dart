@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wallpaper_app/widgets/searchbar.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -67,12 +69,15 @@ class HomePage extends StatelessWidget {
                 ),
                 itemCount: 10, // Replace with your desired item count
                 itemBuilder: (context, index) {
-                  return Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                  return InkWell(
+                    onTap: () =>  Get.toNamed("/category"),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      
                     ),
-                    
                   );
                 },
               ),
