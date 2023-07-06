@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,23 +54,24 @@ class _HomePageState extends State<HomePage> {
                 itemCount:  _imageApiController.imageList.length > 10 ? 10 : _imageApiController.imageList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  // Access the item using controller.imageList[index]
-                  // Modify the widget based on the actual data from the list
-                  return Container(
-                    decoration:const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    width: screenWidth * 0.5,
-                    margin: EdgeInsets.symmetric(vertical: 3, horizontal: 4),
-
-                    child: Image.network(_imageApiController.imageList[index]["urls"]["regular"],
-                    fit: BoxFit.cover,
+                  return InkWell(
+                    onTap: () => Get.toNamed("/wallpaperPage",arguments: _imageApiController.imageList[index]["urls"]["full"]),
+                    child: Container(
+                      decoration:const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      width: screenWidth * 0.5,
+                      margin: const EdgeInsets.symmetric(vertical: 3, horizontal: 4),
+                  
+                      child: Image.network(_imageApiController.imageList[index]["urls"]["regular"],
+                      fit: BoxFit.cover,
+                      ),
                     ),
                   );
                 },
               )),
             ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Text(
                 "Categories",
                 style: TextStyle(
@@ -93,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: 10, // Replace with your desired item count
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () => Get.toNamed("/category"),
+                    onTap: () => Get.toNamed("/category",arguments: "${imageList[index]}"),
                     child: Container(
                       child: Stack(
                         alignment: Alignment.center,

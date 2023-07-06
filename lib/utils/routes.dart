@@ -11,12 +11,12 @@ appRoutes ()=> [
   ),
 
   GetPage(name: '/category',
-   page: () => const Category(),
+   page: () => Category(category: Get.arguments as String,),
    transition: Transition.noTransition,
    ),
 
   GetPage(name: '/wallpaperPage',
-   page: () => const WallpaperPage(),
+   page: () => WallpaperPage(url: Get.arguments as String),
    transition: Transition.noTransition,
    ),
    

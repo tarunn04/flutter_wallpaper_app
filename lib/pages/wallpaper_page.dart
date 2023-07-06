@@ -5,7 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wallpaper_app/services/api_controller.dart';
 
 class WallpaperPage extends StatefulWidget {
-  const WallpaperPage({super.key});
+  String url;
+
+   WallpaperPage({
+    Key? key,
+    required this.url,
+  }) : super(key: key);
 
   @override
   State<WallpaperPage> createState() => _WallpaperPageState();
@@ -25,9 +30,9 @@ class _WallpaperPageState extends State<WallpaperPage> {
               height: MediaQuery.of(context).size.height*0.75,
               width:  MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
-                color: Colors.blueAccent,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
               ),
+              child: Image.network(widget.url,fit: BoxFit.cover,),
             ),
             const SizedBox(height: 20,),
             Row(

@@ -6,12 +6,20 @@ import 'package:http/http.dart' as http;
 import 'package:wallpaper_app/utils/constants.dart';
 class ImageApiController extends GetxController{
   final RxList imageList = RxList();
+  final RxList searchList = RxList();
 
   Future<void> fetchApi() async{
     var response = await http.get(Uri.parse("https://api.unsplash.com/photos/?client_id=$UNSPLASH_API_KEY"));
     var result = jsonDecode(response.body);
     imageList.addAll(result);
-    // imageList.addAll(result["urls"]);
-    // print(imageList.length);
+    // print(result);
+  }
+
+  Future<void> searchFetchApi(String search) async{
+    searchList.clear();
+    var response = await http.get(Uri.parse("https://api.unsplash.com/search/photos/?client_id=$UNSPLASH_API_KEY&query=$search&per_page=50"));
+    var result = jsonDecode(response.body);
+    searchList.addAll(result['results']);
+    // print();
   }
 }
