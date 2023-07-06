@@ -18,12 +18,18 @@ class Category extends StatefulWidget {
 
 class _CategoryState extends State<Category> {
   final ImageApiController _imageApiController = Get.find<ImageApiController>();
-
+   final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _imageApiController.searchFetchApi(widget.category);
+    
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        _imageApiController.addSearchFetchApi(widget.category);
+      }
+    });
   }
 
   @override
@@ -44,8 +50,9 @@ class _CategoryState extends State<Category> {
                 ),
             Expanded(
               child: Obx(() =>  _imageApiController.searchList.isEmpty?
-                Center(child: CircularProgressIndicator())
+                const Center(child: CircularProgressIndicator())
               :GridView.builder(
+                controller: _scrollController,
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   itemCount: _imageApiController.searchList.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
